@@ -5,6 +5,14 @@ export type Product = {
   category: String;
   description: String;
   image: String;
+  rating: {
+    rate: Number;
+    count: Number;
+  };
+};
+
+export type ProductError = {
+  message: string;
 };
 
 export type GetProductsResponse = {

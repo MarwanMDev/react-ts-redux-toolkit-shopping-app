@@ -8,58 +8,105 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import Paper from '@mui/material/Paper';
 import { GetProductsResponse, Product } from '../types';
-import axios from 'axios';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import {
+  fetchProducts,
+  selectAllProducts,
+  getProductsError,
+  getProductsStatus,
+} from '../features/products/productsSlice';
+import { useAppDispatch } from '../hooks';
+import { useAppSelector } from '../hooks';
 import {
   Avatar,
+  Card,
+  CardActions,
+  CardContent,
   CardHeader,
   CardMedia,
   Grid,
   IconButton,
+  Typography,
 } from '@mui/material';
 
 export default function FixedBottomNavigation() {
-  async function getProducts() {
-    try {
-      // 👇️ const data: GetUsersResponse
-      const { data, status } = await axios.get<GetProductsResponse>(
-        'https://fakestoreapi.com/products?limit=26',
-        {
-          headers: {
-            Accept: 'application/json',
-          },
-        }
-      );
+  const products = useAppSelector(selectAllProducts);
+  const status = useAppSelector(getProductsStatus);
+  const error = useAppSelector(getProductsError);
 
-      // console.log(JSON.stringify(data, null, 4));
-      // // 👇️ "response status is: 200"
-      // console.log('response status is: ', status);
-
-      return data;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log('error message: ', error.message);
-        return error.message;
-      } else {
-        console.log('unexpected error: ', error);
-        return 'An unexpected error occurred';
-      }
-    }
-  }
+  const dispatch = useAppDispatch();
 
   const [value, setValue] = React.useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
-  const [products, setProducts] = React.useState<[] | null>(null);
 
   React.useEffect(() => {
-    getProducts().then((res: any) => {
-      setProducts(res);
-      console.log(res);
-    });
+    dispatch(fetchProducts());
   }, []);
+
+  let content;
+
+  if (status === 'loading') {
+    content = <div className="text-center my-5">Loading...</div>;
+  } else if (status === 'succeeded') {
+    content = products.map((product: any, i: any) => (
+      <Grid item xs={12} md={4} key={i}>
+        <Card
+          sx={{
+            maxWidth: 345,
+            minHeight: '30rem',
+            maxHeight: '30rem',
+          }}
+        >
+          <CardHeader
+            avatar={
+              <Avatar sx={{ bgcolor: 'red' }} aria-label="recipe">
+                M
+              </Avatar>
+            }
+            action={
+              <IconButton aria-label="settings">
+                {/* <MoreVertIcon /> */}
+              </IconButton>
+            }
+            title={product.title}
+            subheader={product.category}
+          />
+          <CardMedia
+            component="img"
+            height="194"
+            image={product.image}
+            alt="Paella dish"
+          />
+          <CardContent>
+            <Typography variant="body2" color="text.primary">
+              {product.price}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ overflow: 'hidden' }}
+            >
+              {product.description}
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="share">
+              {/* <ShareIcon /> */}
+            </IconButton>
+          </CardActions>
+        </Card>
+      </Grid>
+    ));
+  } else if (status === 'failed') {
+    content = (
+      <>
+        <h1>Products not found</h1>
+        <p className="text-center text-danger">{error}</p>
+      </>
+    );
+  }
 
   return (
     <Box sx={{ p: 7 }} ref={ref}>
@@ -73,66 +120,9 @@ export default function FixedBottomNavigation() {
             alignItems: 'flex-start',
           }}
         >
-          {products?.map(
-            (
-              { title, price, description, category, image, rating },
-              index
-            ) => (
-              <Grid item xs={12} md={4} key={index}>
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    minHeight: '30rem',
-                    maxHeight: '30rem',
-                  }}
-                >
-                  <CardHeader
-                    avatar={
-                      <Avatar
-                        sx={{ bgcolor: 'red' }}
-                        aria-label="recipe"
-                      >
-                        R
-                      </Avatar>
-                    }
-                    action={
-                      <IconButton aria-label="settings">
-                        {/* <MoreVertIcon /> */}
-                      </IconButton>
-                    }
-                    title={title}
-                    subheader={rating.rate}
-                  />
-                  <CardMedia
-                    component="img"
-                    height="194"
-                    image={image}
-                    alt="Paella dish"
-                  />
-                  <CardContent>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ overflow: 'hidden' }}
-                    >
-                      {description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="share">
-                      {/* <ShareIcon /> */}
-                    </IconButton>
-                  </CardActions>
-                </Card>
-              </Grid>
-            )
-          )}
+          {content}
         </Grid>
       </Box>
-
       <Paper
         sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
         elevation={3}
