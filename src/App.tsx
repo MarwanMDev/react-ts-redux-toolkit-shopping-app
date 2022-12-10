@@ -4,6 +4,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { lightTheme, darkTheme } from './theme';
 import ButtonAppBar from './components/ButtonAppBar';
 import FixedBottomNavigation from './components/FixedBottomNavigation';
+import { Route, Routes } from 'react-router-dom';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   const theme = useAppSelector((state) => state.theme.darkTheme);
@@ -12,7 +14,10 @@ function App() {
     <ThemeProvider theme={theme ? darkTheme : lightTheme}>
       <CssBaseline />
       <ButtonAppBar />
-      <FixedBottomNavigation />
+      <Routes>
+        <Route path="/" element={<FixedBottomNavigation />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
+      </Routes>
     </ThemeProvider>
   );
 }

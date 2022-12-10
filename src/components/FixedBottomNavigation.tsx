@@ -18,6 +18,7 @@ import { useAppDispatch } from '../hooks';
 import { useAppSelector } from '../hooks';
 import {
   Avatar,
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -27,6 +28,7 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function FixedBottomNavigation() {
   const products = useAppSelector(selectAllProducts);
@@ -50,11 +52,11 @@ export default function FixedBottomNavigation() {
     content = products.map((product: any, i: any) => (
       <Grid item xs={12} md={4} key={i}>
         <Card
-          sx={{
-            maxWidth: 345,
-            minHeight: '30rem',
-            maxHeight: '30rem',
-          }}
+        // sx={{
+        //   maxWidth: 345,
+        //   minHeight: '30rem',
+        //   maxHeight: '30rem',
+        // }}
         >
           <CardHeader
             avatar={
@@ -95,6 +97,9 @@ export default function FixedBottomNavigation() {
             <IconButton aria-label="share">
               {/* <ShareIcon /> */}
             </IconButton>
+            <Button href={'/products/' + product.id} size="small">
+              View Details
+            </Button>
           </CardActions>
         </Card>
       </Grid>
@@ -132,9 +137,12 @@ export default function FixedBottomNavigation() {
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
+            console.log(newValue);
           }}
         >
           <BottomNavigationAction
+            // component={Link}
+            // to="/products/:product"
             label="Recents"
             icon={<RestoreIcon />}
           />
