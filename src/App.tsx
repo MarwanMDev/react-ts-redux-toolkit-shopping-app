@@ -6,6 +6,9 @@ import ButtonAppBar from './components/ButtonAppBar';
 import FixedBottomNavigation from './components/FixedBottomNavigation';
 import { Route, Routes } from 'react-router-dom';
 import ProductDetails from './pages/ProductDetails';
+import Home from './pages/Home';
+import MainLayout from './layouts/MainLayout';
+import HeroSection from './components/organisms/hero';
 
 function App() {
   const theme = useAppSelector((state) => state.theme.darkTheme);
@@ -13,11 +16,14 @@ function App() {
   return (
     <ThemeProvider theme={theme ? darkTheme : lightTheme}>
       <CssBaseline />
-      <ButtonAppBar />
+      <MainLayout>
+        <HeroSection />
+      </MainLayout>
+      {/* <ButtonAppBar />
       <Routes>
-        <Route path="/" element={<FixedBottomNavigation />} />
+        <Route path="/" element={<Home />} />
         <Route path="/products/:id" element={<ProductDetails />} />
-      </Routes>
+      </Routes> */}
     </ThemeProvider>
   );
 }

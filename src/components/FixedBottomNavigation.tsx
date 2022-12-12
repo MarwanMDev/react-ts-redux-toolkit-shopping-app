@@ -28,7 +28,6 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 
 export default function FixedBottomNavigation() {
   const products = useAppSelector(selectAllProducts);
@@ -50,13 +49,15 @@ export default function FixedBottomNavigation() {
     content = <div className="text-center my-5">Loading...</div>;
   } else if (status === 'succeeded') {
     content = products.map((product: any, i: any) => (
-      <Grid item xs={12} md={4} key={i}>
+      <Grid item xs={12} md={6} lg={3} key={i}>
         <Card
-        // sx={{
-        //   maxWidth: 345,
-        //   minHeight: '30rem',
-        //   maxHeight: '30rem',
-        // }}
+          sx={
+            {
+              // maxWidth: 345,
+              // minHeight: '30rem',
+              // maxHeight: '30rem',
+            }
+          }
         >
           <CardHeader
             avatar={
@@ -81,13 +82,6 @@ export default function FixedBottomNavigation() {
           <CardContent>
             <Typography variant="body2" color="text.primary">
               {product.price}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ overflow: 'hidden' }}
-            >
-              {product.description}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
@@ -116,13 +110,13 @@ export default function FixedBottomNavigation() {
   return (
     <Box sx={{ p: 7 }} ref={ref}>
       <CssBaseline />
-      <Box sx={{ flexGrow: 1 }}>
+      <Box>
         <Grid
           container
           spacing={2}
           sx={{
             justifyContent: 'space-around',
-            alignItems: 'flex-start',
+            alignItems: 'center',
           }}
         >
           {content}

@@ -36,6 +36,33 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const fetchProductDetails = createAsyncThunk(
+  'products/fetchProductDetails',
+  async () => {
+    try {
+      const { data, status } = await axios.get(
+        'https://fakestoreapi.com/products/1',
+        {
+          headers: {
+            Accept: 'application/json',
+          },
+        }
+      );
+      console.log('response status is: ', status);
+      console.log(data);
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log('error message: ', error.message);
+        return error.message;
+      } else {
+        console.log('unexpected error: ', error);
+        return 'An unexpected error occurred';
+      }
+    }
+  }
+);
+
 const productsSlice = createSlice({
   name: 'products',
   initialState,
