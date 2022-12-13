@@ -38,6 +38,7 @@ const Slider = ({
         onSwiper={(e: any) => setSwiperSlide(e)}
         modules={[Navigation, Pagination, EffectFade]}
         effect="fade"
+        className="group"
       >
         <NavigationButton type="prev" onClick={onPrev} />
         {children}

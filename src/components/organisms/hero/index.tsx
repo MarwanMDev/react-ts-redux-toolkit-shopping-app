@@ -1,18 +1,17 @@
 import { Slider } from '../../molecules';
 import { SwiperSlide } from 'swiper/react';
+import { HERO_IMAGES } from '../../constants/api';
 
 const HeroSection = () => {
   return (
     <Slider slidesPerView={1}>
-      <SwiperSlide>
-        <div className="h-96 bg-red-400">yo</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="h-96 bg-green-400">yo</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="h-96 bg-blue-400">yo</div>
-      </SwiperSlide>
+      {HERO_IMAGES.map((img, index) => (
+        <SwiperSlide key={index}>
+          <div className={`${img} bg-cover bg-center h-[80vh]`}>
+            yo
+          </div>
+        </SwiperSlide>
+      ))}
     </Slider>
   );
 };

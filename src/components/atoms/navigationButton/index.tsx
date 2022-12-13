@@ -11,7 +11,7 @@ const NavigationButton = ({
   type,
   onClick,
 }: NavigationButtonProps) => {
-  const controlStyles = `absolute z-50
+  const controlStyles = `absolute z-50 group-hover:opacity-75 opacity-0 hover:!opacity-100
   ${
     icon
       ? 'top-1/2 transform -translate-y-1/2'
