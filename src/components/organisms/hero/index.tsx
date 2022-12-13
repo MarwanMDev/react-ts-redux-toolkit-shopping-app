@@ -7,9 +7,7 @@ const HeroSection = () => {
     <Slider slidesPerView={1}>
       {HERO_IMAGES.map((img, index) => (
         <SwiperSlide key={index}>
-          <div className={`${img} bg-cover bg-center h-[80vh]`}>
-            yo
-          </div>
+          <div className={`${img} bg-cover bg-center h-[80vh]`} />
         </SwiperSlide>
       ))}
     </Slider>

@@ -8,7 +8,10 @@ import { Route, Routes } from 'react-router-dom';
 import ProductDetails from './pages/ProductDetails';
 import Home from './pages/Home';
 import MainLayout from './layouts/MainLayout';
-import HeroSection from './components/organisms/hero';
+import {
+  HeroSection,
+  FeaturedProducts,
+} from './components/organisms';
 
 function App() {
   const theme = useAppSelector((state) => state.theme.darkTheme);
@@ -18,6 +21,7 @@ function App() {
       <CssBaseline />
       <MainLayout>
         <HeroSection />
+        <FeaturedProducts />
       </MainLayout>
       {/* <ButtonAppBar />
       <Routes>

@@ -11,7 +11,7 @@ const NavigationButton = ({
   type,
   onClick,
 }: NavigationButtonProps) => {
-  const controlStyles = `absolute z-50 group-hover:opacity-75 opacity-0 hover:!opacity-100
+  const controlStyles = `absolute z-50 group-hover:opacity-40 opacity-0 hover:!opacity-50 transition duration-150
   ${
     icon
       ? 'top-1/2 transform -translate-y-1/2'
@@ -20,8 +20,8 @@ const NavigationButton = ({
   ${type === 'next' ? 'right-0' : 'left-0'}`;
   return (
     <button className={controlStyles} onClick={onClick}>
-      {type === 'next' && (icon ? icon : <span>Next</span>)}
-      {type === 'prev' && (icon ? icon : <span>Prev</span>)}
+      {type === 'next' && (icon ? icon : <></>)}
+      {type === 'prev' && (icon ? icon : <></>)}
     </button>
   );
 };
