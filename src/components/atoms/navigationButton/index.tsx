@@ -15,7 +15,7 @@ const NavigationButton = ({
   ${
     icon
       ? 'top-1/2 transform -translate-y-1/2'
-      : 'h-full top-0 w-16 bg-gray-400 opacity-30 hover:bg-gray-600'
+      : 'h-full top-0 w-16 bg-gray-400'
   }
   ${type === 'next' ? 'right-0' : 'left-0'}`;
   return (

@@ -29,15 +29,15 @@ const Slider = ({
     swiperSlide.slidePrev();
   };
   return (
-    <div className={`px-10 w-full relative ${className}`}>
+    <div className={`w-full relative ${className}`}>
       {title && (
         <div className="text-2xl my-16 font-bold">{title}</div>
       )}
       <Swiper
         {...rest}
         onSwiper={(e: any) => setSwiperSlide(e)}
-        modules={[Navigation, Pagination, EffectFade]}
-        effect="fade"
+        modules={[Navigation, Pagination]} //EffectFade
+        // effect="fade"
         className="group"
       >
         <NavigationButton type="prev" onClick={onPrev} />
