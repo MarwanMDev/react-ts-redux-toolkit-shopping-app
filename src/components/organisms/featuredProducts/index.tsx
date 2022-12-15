@@ -1,4 +1,3 @@
-import React from 'react';
 import { SwiperSlide } from 'swiper/react';
 import { PRODUCT_DETAILS } from '../../constants/api';
 import { ProductCardSlide, Slider } from '../../molecules';

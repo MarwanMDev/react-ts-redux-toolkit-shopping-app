@@ -18,3 +18,10 @@ export type ProductError = {
 export type GetProductsResponse = {
   data: Product[];
 };
+
+export type IProductCardSlide = {
+  title: string;
+  price: number;
+  rating: number;
+  img: string;
+};
