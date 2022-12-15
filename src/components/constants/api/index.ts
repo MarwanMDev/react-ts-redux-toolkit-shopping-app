@@ -44,4 +44,40 @@ export const PRODUCT_DETAILS: IProductCardSlide[] = [
     rating: 2,
     img: 'src/assets/images/img6.jpg',
   },
+  {
+    title: 'Fernando Andrade',
+    price: 50.26,
+    rating: 4,
+    img: 'src/assets/images/img1.jpg',
+  },
+  {
+    title: 'Kelvin Lutan',
+    price: 21.67,
+    rating: 1,
+    img: 'src/assets/images/img2.jpg',
+  },
+  {
+    title: 'Laura Chouette',
+    price: 74.12,
+    rating: 2,
+    img: 'src/assets/images/img3.jpg',
+  },
+  {
+    title: 'Mitra Jml',
+    price: 22.56,
+    rating: 4,
+    img: 'src/assets/images/img4.jpg',
+  },
+  {
+    title: 'Laura Chouette',
+    price: 74.12,
+    rating: 2,
+    img: 'src/assets/images/img3.jpg',
+  },
+  {
+    title: 'Mitra Jml',
+    price: 22.56,
+    rating: 4,
+    img: 'src/assets/images/img4.jpg',
+  },
 ];
