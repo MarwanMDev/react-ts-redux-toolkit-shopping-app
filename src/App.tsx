@@ -12,6 +12,7 @@ import {
   HeroSection,
   FeaturedProducts,
   ProductList,
+  FAQsection,
 } from './components/organisms';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <HeroSection />
         <FeaturedProducts />
         <ProductList />
+        <FAQsection />
       </MainLayout>
       {/* <ButtonAppBar />
       <Routes>

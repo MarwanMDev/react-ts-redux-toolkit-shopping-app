@@ -25,3 +25,8 @@ export type IProductCardSlide = {
   rating: number;
   img: string;
 };
+
+export type IAccordian = {
+  title: string;
+  summery: string;
+};

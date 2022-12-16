@@ -17,6 +17,30 @@ const ANIMATIONS: AnimationsProps = {
       duration: 0.5,
     },
   },
+  openContent: {
+    initial: {
+      height: 0,
+    },
+    animate: {
+      height: 'auto',
+      transition: {
+        height: {
+          duration: 0.4,
+        },
+      },
+    },
+    exit: {
+      height: 0,
+      transition: {
+        height: 0,
+        transition: {
+          height: {
+            duration: 0.4,
+          },
+        },
+      },
+    },
+  },
 };
 
 export default ANIMATIONS;
