@@ -1,11 +1,21 @@
 import React from 'react';
+import { useAppContext } from '../../../context/useContext';
 import { Drawer } from '../../atoms';
 import SidebarItems from '../sidebarItems';
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(true);
+  const { openSidebar, setOpenSidebar } = useAppContext();
+  const handleOpenSidebar = () => {
+    setOpenSidebar((prev: boolean) => !prev);
+  };
   return (
-    <Drawer anchor="left" open={true} className="" title="SideBar">
+    <Drawer
+      anchor="left"
+      open={openSidebar}
+      className=""
+      title="SideBar"
+      onClose={handleOpenSidebar}
+    >
       <div className="h-full px-5 py-10 w-96">
         <SidebarItems />
       </div>
